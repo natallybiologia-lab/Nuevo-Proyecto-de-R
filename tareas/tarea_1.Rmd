@@ -1,0 +1,108 @@
+---
+title: "Tarea 1"
+author: "Natally S. Vidal-Figueroa"
+date: "2025-09-05"
+output: html_document
+---
+
+#P1. Crea un objeto llamado altura con el valor 175. Imprímelo. 
+
+```{r}
+
+altura = 175
+altura
+```
+
+#P2. Calcula el resultado de 25 * 4 - 10.(Calcula el resultado de 25 * 4 - 10.)
+
+```{r}
+25*4-2
+```
+
+#P3. Usa la función sqrt() para calcular la raíz cuadrada de 81. (Usa la función sqrt() para calcular la raíz cuadrada de 81.)
+
+```{r}
+sqrt(81)
+```
+
+
+#P4. Asigna la frase "¡R es divertido!" a un objeto llamado mensaje. Imprímelo.
+
+```{r}
+mensaje <- "¡R es divertido!"
+mensaje
+```
+
+
+#P5. Crea dos objetos a <- 10 y b <- 5. Calcula su suma y guárdala en c. (Crea dos objetos a <- 10 y b <- 5. Calcula su suma y guárdala en c.)
+
+```{r}
+a <- 10
+b <- 5
+c <- a+b
+c
+
+```
+
+
+
+#P6. Pruebe si 15 es mayor que 20. (Verifica si 15 es mayor que 20.)
+
+```{r}
+
+15>20
+
+
+```
+
+
+
+#Q7. Verificar la clase del objeto "Hello World". "Hello World"
+
+```{r}
+"hello world"
+
+class("Hello world")
+
+```
+
+
+#P8. Ejecute el siguiente fragmento de código:
+#- Observe las advertencias que aparecen. (Observa las advertencias que aparecen.)
+#- Modifica las opciones de fragmentos para suprimir las advertencias sin cambiar el código en sí. (Modifique las opciones del fragmento para apagar la advertencia sin cambiar el código.)
+
+```{r, warning=FALSE}
+log(-1)
+```
+
+
+
+#P9. Ejecute el siguiente fragmento de código: - Observe los mensajes que aparecen. (Observa los mensajes que aparecen.)
+
+#+Modifique las opciones de fragmentos para suprimir mensajes sin cambiar el código en sí. (Modifica las opciones del fragmento para apagar mensajes sin cambiar el código.)
+
+```{r, message=FALSE}
+
+# Load a package (may produce messages)
+library(dplyr)
+
+
+```
+
+#P10. Utilice el sistema de ayuda de R para descubrir qué mean()hace la función. (Usa el sistema de ayuda de R para averiguar qué hace la función mean().)
+
+
+```{r}
+help(mean)
+
+mean (2,5,4,9)
+```
+
+
+#Q11 Suma 5+10
+
+```{r}
+5+10
+```
+
+

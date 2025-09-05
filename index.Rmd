@@ -4,10 +4,22 @@ author: "Natally S. Vidal-Figueroa"
 date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
 output:
   prettydoc::html_pretty:
-    theme: cayman
+    theme: architec
     higlight: github
 
 ---
+Hola, Bienvenidos a mi nueva pagina.
 
+
+
+
+
+```{r echo=FALSE}
+knitr::include_graphics("C:/Users/Natally Vidal/OneDrive - University of Puerto Rico/datos de R/Captura de pantalla 2023-11-20 112219.png")
+
+```
+
+
+Mis trabajos de Clase
 
 [homework1](tareas/tarea_1.html)

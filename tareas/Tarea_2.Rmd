@@ -3,6 +3,7 @@ title: "Homework 2"
 author: "Natally S. Vidal-Figueroa"
 date: "2025-09-15"
 output: html_document
+date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
 ---
 
 #P1. Convierta el conjunto de datos incorporado BOD en una lista e imprima la lista.

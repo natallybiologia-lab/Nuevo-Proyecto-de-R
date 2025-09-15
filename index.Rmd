@@ -8,18 +8,18 @@ output:
     higlight: github
 
 ---
-Hola, Bienvenidos a mi nueva pagina.
 
-
-
+Natally S. Vidal Figueroa es investigadora en biotecnología y microbiología, con experiencia en biodegradación de plásticos y petroquímicos mediante consorcios microbianos y técnicas espectroscópicas avanzadas, enfocándose en la recuperación ambiental de manglares y áreas marinas protegidas.Paralelamente, su investigación en nanotecnología se centra en la aplicación de nanoparticulas y espectroscopia en salud, con publicaciones sobre la detección temprana de infertilidad masculina y la detección temprana de lupus, demostrando su compromiso con la innovación biomédica y la traducción de tecnologías avanzadas a aplicaciones clínicas.
 
 
 ```{r echo=FALSE}
-knitr::include_graphics("C:/Users/Natally Vidal/OneDrive - University of Puerto Rico/datos de R/Captura de pantalla 2023-11-20 112219.png")
+knitr::include_graphics("C:/Users/Natally Vidal/OneDrive - University of Puerto Rico/datos de R/imagen poster.jpg")
 
 ```
 
 
 Mis trabajos de Clase
 
-[homework1](tareas/tarea_1.html)
+[Homework1](tareas/tarea_1.html)
+
+[Homework2](tareas/tarea_2.html)

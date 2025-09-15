@@ -20,7 +20,7 @@ knitr::include_graphics("C:/Users/Natally Vidal/OneDrive - University of Puerto 
 
 Mis trabajos de Clase
 
-[Homework1](tareas/tarea_1.html)
+### [Homework1](tareas/tarea_1.html)
 
-[Homework2](tareas/tarea_2.html)
+### [Homework2](tareas/tarea_2.html)
 

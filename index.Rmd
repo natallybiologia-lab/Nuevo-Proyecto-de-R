@@ -22,5 +22,5 @@ Mis trabajos de Clase
 
 ### [Homework1](tareas/tarea_1.html)
 
-### [Homework2](tareas/tarea_2.html)
+### [Homework2](tareas/Tarea_2.html)
 

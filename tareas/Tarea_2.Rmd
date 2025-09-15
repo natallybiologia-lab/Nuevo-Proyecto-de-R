@@ -1,0 +1,88 @@
+---
+title: "Homework 2"
+author: "Natally S. Vidal-Figueroa"
+date: "2025-09-15"
+output: html_document
+---
+
+#P1. Convierta el conjunto de datos incorporado BOD en una lista e imprima la lista.
+
+```{r}
+BOD_df <- data.frame( Time= c(1,2,3,4,5,7), Demand= c(8.3,10.3,19.0,16.0,15.6,19.8))
+
+BOD_df
+```
+
+#P2. Convierta el siguiente marco de datos en un marco de datos e imprima la matriz. 
+```{r}
+df1=data.frame(
+  "name"= c("a","b","c","d"),
+  "age"= c(12,34,23,67),
+  "BMI"= c(22,12,10,11),
+  "country"= c("Malasya","India","Spain","England")
+)
+df1
+
+```
+
+#P3. Cree un subconjunto del dfconjunto de datos que incluya solo la primera y la segunda fila . Imprima el subconjunto.
+```{r}
+df4=data.frame(
+  A=c("Raju","Kumar","Chandru","Deepak","Raina", "Dhoni", "Hema", "Vandana", "Bela","Anand" ),
+  B=c(12,34,23,67,23,43,23,38,34,12),
+  C=c("M","M","M","M","M","M","F","F","F","M"),
+  D=c("Malaysia","India","Spain","England", "Malaysia", "Malaysia", "India", "Egypt", "Italy", "Peru"))
+
+
+names(df4)<-c("Name", "Age", "Gender","Country" )
+
+df4
+
+df4[1:2,]
+
+```
+
+#P4. Cree un subconjunto df de la P3 que incluya solo la primera y la segunda columna. Imprime el subconjunto.
+
+```{r}
+df4[1:2]
+```
+#P5. Ordene el df de la Q3 por la columna Age en orden ascendente. Imprima el marco de datos ordenado.
+
+```{r}
+
+subset <- df4[order(df4$Age),]
+subset
+```
+
+#P6. Agrega una nueva columna llamada Score al df de la Q3 con los siguientes valores: 85, 90, 78, 88, 90, 92, 80, 90, 87, 100. Imprime el data frame actualizado.
+```{r}
+df4$Score <- c(85,90,78,88,90,92,80,90,87,100)
+df4
+```
+
+#P7. A partir de df de la P3, cree un subconjunto donde la edad sea mayor que 30. Imprima el subconjunto.
+
+```{r}
+subset <- df4[df4$Age > 30,]
+subset
+```
+
+#P8. Renombra las columnas del df de la Q3 como Persona, Años, Índice y Nación. Imprima el marco de datos actualizado.
+
+```{r}
+colnames(df4) <- c("Persona", "Años","Indice","Nación","puntaje")
+df4
+```
+
+#P9. Del df de la Q2 , selecciona las filas donde Age sea mayor a 20 y BMI menor a 15. Imprime el subconjunto.
+```{r}
+subset(df1,age>20 & BMI<15)
+
+```
+#P10. Calcula la media de la columna Age del df de la Q2 . Imprime el resultado.
+```{r}
+media <- mean(df1$age)
+media
+```
+

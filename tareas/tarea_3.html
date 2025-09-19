@@ -11,9 +11,8 @@
 
 <meta name="author" content="Natally S. Vidal-Figueroa" />
 
-<meta name="date" content="2025-09-16" />
 
-<title>Nota de clase 1</title>
+<title>Homework_3</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,17 +349,180 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Nota de clase 1</h1>
+<h1 class="title toc-ignore">Homework_3</h1>
 <h4 class="author">Natally S. Vidal-Figueroa</h4>
-<h4 class="date">2025-09-16</h4>
+<h4 class="date">2025-sept-19, 05:26 p. m.</h4>
 
 </div>
 
 
-<p>##CLASE DE dplyer</p>
-<p>%&gt;%</p>
-<p>install.packages(“dplyer”) library(dplyr)</p>
-<p>data(“starwars”) head(starwars,3)</p>
+<pre class="r"><code>library(dplyr)
+library(gapminder)</code></pre>
+<pre class="r"><code>data(&quot;gapminder&quot;)
+head(gapminder)</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
+<p>#P1. ¿Qué clase es el dataset gapminder?</p>
+<pre class="r"><code>class(gapminder)</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>#P2. Filtrar una sección de gapminder con una esperanza de vida
+inferior a 29 años.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(lifeExp&lt;29)</code></pre>
+<pre><code>## # A tibble: 2 × 6
+##   country     continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8 8425333      779.
+## 2 Rwanda      Africa     1992    23.6 7290203      737.</code></pre>
+<p>#P3 Filtrar el conjunto de datos para el país Ruanda y para años
+mayores a 1979.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country==&quot;Rwanda&quot;, year&gt;1979)</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   country continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Rwanda  Africa     1982    46.2 5507565      882.
+## 2 Rwanda  Africa     1987    44.0 6349365      848.
+## 3 Rwanda  Africa     1992    23.6 7290203      737.
+## 4 Rwanda  Africa     1997    36.1 7212583      590.
+## 5 Rwanda  Africa     2002    43.4 7852401      786.
+## 6 Rwanda  Africa     2007    46.2 8860588      863.</code></pre>
+<p>#P4.Cree un nuevo conjunto de datos desde gapminder excluyendo la
+columna gdpPercap.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  select(-gdpPercap)</code></pre>
+<pre><code>## # A tibble: 1,704 × 5
+##    country     continent  year lifeExp      pop
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333
+##  2 Afghanistan Asia       1957    30.3  9240934
+##  3 Afghanistan Asia       1962    32.0 10267083
+##  4 Afghanistan Asia       1967    34.0 11537966
+##  5 Afghanistan Asia       1972    36.1 13079460
+##  6 Afghanistan Asia       1977    38.4 14880372
+##  7 Afghanistan Asia       1982    39.9 12881816
+##  8 Afghanistan Asia       1987    40.8 13867957
+##  9 Afghanistan Asia       1992    41.7 16317921
+## 10 Afghanistan Asia       1997    41.8 22227415
+## # ℹ 1,694 more rows</code></pre>
+<p>#P5 Ordenar el conjunto de datos en orden ascendente según
+lifeExp.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  arrange(lifeExp)</code></pre>
+<pre><code>## # A tibble: 1,704 × 6
+##    country      continent  year lifeExp     pop gdpPercap
+##    &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+##  1 Rwanda       Africa     1992    23.6 7290203      737.
+##  2 Afghanistan  Asia       1952    28.8 8425333      779.
+##  3 Gambia       Africa     1952    30    284320      485.
+##  4 Angola       Africa     1952    30.0 4232095     3521.
+##  5 Sierra Leone Africa     1952    30.3 2143249      880.
+##  6 Afghanistan  Asia       1957    30.3 9240934      821.
+##  7 Cambodia     Asia       1977    31.2 6978607      525.
+##  8 Mozambique   Africa     1952    31.3 6446316      469.
+##  9 Sierra Leone Africa     1957    31.6 2295678     1004.
+## 10 Burkina Faso Africa     1952    32.0 4469979      543.
+## # ℹ 1,694 more rows</code></pre>
+<p>#P6.Ordenar el conjunto de datos en orden descendente según
+lifeExp.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  arrange(-lifeExp)</code></pre>
+<pre><code>## # A tibble: 1,704 × 6
+##    country          continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Japan            Asia       2007    82.6 127467972    31656.
+##  2 Hong Kong, China Asia       2007    82.2   6980412    39725.
+##  3 Japan            Asia       2002    82   127065841    28605.
+##  4 Iceland          Europe     2007    81.8    301931    36181.
+##  5 Switzerland      Europe     2007    81.7   7554661    37506.
+##  6 Hong Kong, China Asia       2002    81.5   6762476    30209.
+##  7 Australia        Oceania    2007    81.2  20434176    34435.
+##  8 Spain            Europe     2007    80.9  40448191    28821.
+##  9 Sweden           Europe     2007    80.9   9031088    33860.
+## 10 Israel           Asia       2007    80.7   6426679    25523.
+## # ℹ 1,694 more rows</code></pre>
+<p>#P7. Crear un nuevo conjunto de datos con solo las columnas year y
+lifeExp.</p>
+<pre class="r"><code>nuevo &lt;-  gapminder %&gt;% 
+  select(year,lifeExp)
+
+nuevo</code></pre>
+<pre><code>## # A tibble: 1,704 × 2
+##     year lifeExp
+##    &lt;int&gt;   &lt;dbl&gt;
+##  1  1952    28.8
+##  2  1957    30.3
+##  3  1962    32.0
+##  4  1967    34.0
+##  5  1972    36.1
+##  6  1977    38.4
+##  7  1982    39.9
+##  8  1987    40.8
+##  9  1992    41.7
+## 10  1997    41.8
+## # ℹ 1,694 more rows</code></pre>
+<p>#P8. Filtrar el conjunto de datos para el país Camboya y mostrar
+únicamente las columnas año y vidaExp.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country==&quot;Cambodia&quot;) %&gt;% 
+  select(year,lifeExp)</code></pre>
+<pre><code>## # A tibble: 12 × 2
+##     year lifeExp
+##    &lt;int&gt;   &lt;dbl&gt;
+##  1  1952    39.4
+##  2  1957    41.4
+##  3  1962    43.4
+##  4  1967    45.4
+##  5  1972    40.3
+##  6  1977    31.2
+##  7  1982    51.0
+##  8  1987    53.9
+##  9  1992    55.8
+## 10  1997    56.5
+## 11  2002    56.8
+## 12  2007    59.7</code></pre>
+<p>#P9. Seleccione únicamente los países que están en África.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(continent==&quot;Africa&quot;)</code></pre>
+<pre><code>## # A tibble: 624 × 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Algeria Africa     1952    43.1  9279525     2449.
+##  2 Algeria Africa     1957    45.7 10270856     3014.
+##  3 Algeria Africa     1962    48.3 11000948     2551.
+##  4 Algeria Africa     1967    51.4 12760499     3247.
+##  5 Algeria Africa     1972    54.5 14760787     4183.
+##  6 Algeria Africa     1977    58.0 17152804     4910.
+##  7 Algeria Africa     1982    61.4 20033753     5745.
+##  8 Algeria Africa     1987    65.8 23254956     5681.
+##  9 Algeria Africa     1992    67.7 26298373     5023.
+## 10 Algeria Africa     1997    69.2 29072015     4797.
+## # ℹ 614 more rows</code></pre>
+<p>#P10. Crea una nueva columna llamada lifeExp_months que muestre la
+esperanza de vida en meses.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  mutate(esperanza = lifeExp*12)</code></pre>
+<pre><code>## # A tibble: 1,704 × 7
+##    country     continent  year lifeExp      pop gdpPercap esperanza
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.      346.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.      364.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.      384.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.      408.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.      433.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.      461.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.      478.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.      490.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.      500.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.      501.
+## # ℹ 1,694 more rows</code></pre>
 
 
 

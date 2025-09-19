@@ -1,0 +1,100 @@
+---
+title: "Homework_3"
+author: "Natally S. Vidal-Figueroa"
+date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
+output: html_document
+---
+
+
+
+```{r, message=FALSE}
+
+library(dplyr)
+library(gapminder)
+```
+
+```{r}
+data("gapminder")
+head(gapminder)
+
+```
+
+#P1. ¿Qué clase es el dataset gapminder?
+```{r}
+class(gapminder)
+```
+
+
+#P2. Filtrar una sección de gapminder con una esperanza de vida inferior a 29 años.
+```{r}
+gapminder %>% 
+  filter(lifeExp<29)
+```
+
+
+#P3 Filtrar el conjunto de datos para el país Ruanda y para años mayores a 1979.
+```{r}
+gapminder %>% 
+  filter(country=="Rwanda", year>1979)
+```
+
+
+#P4.Cree un nuevo conjunto de datos desde gapminder excluyendo la columna gdpPercap.
+```{r}
+gapminder %>% 
+  select(-gdpPercap)
+  
+```
+
+
+#P5 Ordenar el conjunto de datos en orden ascendente según lifeExp.
+
+```{r}
+gapminder %>% 
+  arrange(lifeExp)
+```
+
+#P6.Ordenar el conjunto de datos en orden descendente según lifeExp.
+
+```{r}
+gapminder %>% 
+  arrange(-lifeExp)
+```
+
+#P7. Crear un nuevo conjunto de datos con solo las columnas year y lifeExp.
+
+```{r}
+
+
+nuevo <-  gapminder %>% 
+  select(year,lifeExp)
+
+nuevo
+```
+
+#P8. Filtrar el conjunto de datos para el país Camboya y mostrar únicamente las columnas año y vidaExp.
+
+```{r}
+gapminder %>% 
+  filter(country=="Cambodia") %>% 
+  select(year,lifeExp)
+```
+
+#P9. Seleccione únicamente los países que están en África.
+
+```{r}
+gapminder %>% 
+  filter(continent=="Africa")
+
+```
+
+#P10. Crea una nueva columna llamada lifeExp_months que muestre la esperanza de vida en meses.
+
+```{r}
+gapminder %>% 
+  mutate(esperanza = lifeExp*12)
+```
+
+
+
+

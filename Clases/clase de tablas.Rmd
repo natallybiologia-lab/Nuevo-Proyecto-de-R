@@ -1,0 +1,25 @@
+---
+title: "clase"
+author: "Natally S. Vidal-Figueroa"
+date: "2025-09-25"
+output: html_documet
+---
+
+```{r}
+#install.packages("knitr")
+#install.packages("gt")
+#install.packages("kableExtra")
+# install.packages("gaawr2")
+```
+
+force=True obliga a instalar el paquete
+
+```{r}
+library(gaawr2)
+library(dplyr)
+library(kableExtra)
+library(knitr)
+library(gt)
+
+```
+

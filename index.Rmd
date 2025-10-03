@@ -26,3 +26,5 @@ Mis trabajos de Clase
 
 ### [Homework3](tareas/tarea_3.html)
 
+### [Practica](tareas/practica_examen.html)
+

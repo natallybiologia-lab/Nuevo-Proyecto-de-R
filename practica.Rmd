@@ -1,0 +1,88 @@
+---
+title: "Practica del examen"
+author: "Natally S. Vidal-Figueroa"
+date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
+
+---
+
+```{r, message=FALSE}
+library(readxl)
+library(dplyr)
+
+```
+
+```{r}
+cereal <- read_excel("cereal.xlsx")
+head(cereal)
+```
+
+#Extraiga las filas 1 a 10 del marco de datos de cereales.
+
+```{r}
+filas <- cereal [1:10,]
+filas
+```
+
+#Cree un nuevo marco de datos llamado Kelloggs que solo contenga filas donde empresa == “K”.
+
+```{r}
+kellogs <-  subset(cereal, company=="K")
+kellogs
+```
+
+
+#De los datos de los cereales, extraiga los nombres de todos los cereales que tengan más de 10 gramos de azúcar.
+
+```{r}
+fitness <- subset(cereal,sugars<10)
+fitness
+```
+
+#Encuentre las calorías medias de todos los cereales en el conjunto de datos. 
+
+```{r}
+mean(cereal$calories)
+
+```
+
+#Cuente cuántos cereales tienen fibra mayor o igual a 2 gramos 
+
+```{r}
+length(cereal$fiber[cereal$fiber >= 2])
+
+```
+ 
+ 
+ 
+ PARTE 2
+ 
+ 
+ 
+ 
+```{r}
+articles <- read.csv("EquationCitations.csv")
+head(articles)
+```
+
+#La revista Proceedings of the National Academy of Sciences le ha pedido que revise los datos de Fawcett y Higginson (2012) sobre el uso de ecuaciones en artículos de biología evolutiva. Están particularmente interesados ​​en dos cosas:
+
+#En promedio, ¿cuántas ecuaciones se publican por artículo en cada revista? (Sugerencia: use group_by() y summarise())
+
+```{r}
+articles %>% 
+  group_by(journal) %>% 
+  summarise(promedio = mean(equations))
+```
+#Para cada revista, calcule la proporción promedio de citas teóricas respecto al total de citas. (Sugerencia: cree una nueva columna con mutate(theo_ratio = theocites / cites), luego group_by() y summarise())
+
+```{r}
+articles %>% 
+  mutate(promedio_citas= theocites/cites ) %>% 
+  group_by(journal) %>% 
+  summarise(Prom= mean(promedio_citas))
+```
+
+#Posibles hallazgos:
+
+Mis hallazgos mostraron que, en promedio, el número de ecuaciones por artículo variaba entre revistas. En particular, The American Naturalist, Evolution y Proceedings of the Royal Society B mostraron diferencias, con un promedio que oscilaba entre 9.04 (Am. Nat.) y 2.91 (Evolution) y 2.69 (Proc. B) ecuaciones por artículo. En cuanto a las citas, la proporción de citas teóricas respecto al total también variaba según la revista. En promedio, los artículos de The American Naturalist tuvieron una tasa media de citas teóricas de 0.253, los de Evolution de 0.138 y ​​los de Proceedings B de 0.176.
+

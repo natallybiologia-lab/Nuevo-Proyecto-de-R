@@ -3,3 +3,16 @@ title: "Examen 1"
 author: "Natally S. Vidal-Figueroa"
 date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
 ---
+```{r, message=FALSE}
+library(tidyverse)
+library(dplyr)
+library(aod)
+```
+
+```{r}
+msleep <- glimpse(msleep)
+storms <- storms
+lizards <- lizards
+
+```
+

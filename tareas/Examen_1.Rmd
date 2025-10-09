@@ -1,0 +1,5 @@
+---
+title: "Examen 1"
+author: "Natally S. Vidal-Figueroa"
+date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
+---

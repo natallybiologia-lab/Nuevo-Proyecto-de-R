@@ -16,3 +16,54 @@ lizards <- lizards
 
 ```
 
+```{r}
+head(storms)
+```
+
+```{r}
+head(lizards)
+```
+
+#1.Usa filter() para seleccionar del dataset msleep solo los animales que están despiertos al menos 12 horas al día.
+```{r}
+msleep %>% 
+  filter(awake>=12)
+
+```
+
+#2.Usa mutate() para crear una nueva columna llamada percent_day_awake que muestre el porcentaje del día que cada especie permanece despierta. Usa select() con everything() al final para comprobar que tus cálculos son correctos.
+
+```{r}
+msleep %>% 
+  mutate(percent_day_awake=( awake/24)*100) %>% 
+   select(name,awake,percent_day_awake)
+
+```
+
+#3.Agrupa los datos por año y calcula el número de tormentas que ocurrieron cada año.
+
+```{r}
+storms %>% 
+  group_by(year) %>% 
+  summarize(n())
+```
+
+#4.Filtra el dataset para quedarte solo con tormentas que tengan velocidad de viento mayor a 50 nudos, y luego ordénalas de mayor a menor velocidad de viento.
+
+```{r}
+storms %>% 
+  filter(wind>50) %>% 
+  arrange(desc(wind))
+
+```
+
+#5.Determina cuál combinación de Sitio y Diámetro tiene el total de grahami más alto.
+
+```{r}
+lizards %>% 
+  group_by(Site,Diameter) %>% 
+  summarise(new_var= sum(grahami)) %>% 
+  arrange(desc(new_var))
+```
+
+

@@ -351,7 +351,7 @@ display: none;
 
 <h1 class="title toc-ignore">Examen 1</h1>
 <h4 class="author">Natally S. Vidal-Figueroa</h4>
-<h4 class="date">2025-oct-09, 01:20 p. m.</h4>
+<h4 class="date">2025-oct-09, 04:38 p. m.</h4>
 
 </div>
 
@@ -375,6 +375,123 @@ library(aod)</code></pre>
 ## $ bodywt       &lt;dbl&gt; 50.000, 0.480, 1.350, 0.019, 600.000, 3.850, 20.490, 0.04…</code></pre>
 <pre class="r"><code>storms &lt;- storms
 lizards &lt;- lizards</code></pre>
+<pre class="r"><code>head(storms)</code></pre>
+<pre><code>## # A tibble: 6 × 13
+##   name   year month   day  hour   lat  long status       category  wind pressure
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+## 1 Amy    1975     6    27     0  27.5 -79   tropical de…       NA    25     1013
+## 2 Amy    1975     6    27     6  28.5 -79   tropical de…       NA    25     1013
+## 3 Amy    1975     6    27    12  29.5 -79   tropical de…       NA    25     1013
+## 4 Amy    1975     6    27    18  30.5 -79   tropical de…       NA    25     1013
+## 5 Amy    1975     6    28     0  31.5 -78.8 tropical de…       NA    25     1012
+## 6 Amy    1975     6    28     6  32.4 -78.7 tropical de…       NA    25     1012
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
+<pre class="r"><code>head(lizards)</code></pre>
+<pre><code>##   Site Diameter Height    Time grahami opalinus
+## 1  Sun   D &lt;= 2  H &lt; 5   Early      20        2
+## 2  Sun   D &lt;= 2  H &lt; 5 Mid-day       8        1
+## 3  Sun   D &lt;= 2  H &lt; 5    Late       4        4
+## 4  Sun   D &lt;= 2 H &gt;= 5   Early      13        0
+## 5  Sun   D &lt;= 2 H &gt;= 5 Mid-day       8        0
+## 6  Sun   D &lt;= 2 H &gt;= 5    Late      12        0</code></pre>
+<p>#1.Usa filter() para seleccionar del dataset msleep solo los animales
+que están despiertos al menos 12 horas al día.</p>
+<pre class="r"><code>msleep %&gt;% 
+  filter(awake&gt;=12)</code></pre>
+<pre><code>## # A tibble: 52 × 11
+##    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+##  2 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+##  3 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+##  4 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+##  5 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+##  6 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7
+##  7 Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6
+##  8 Grivet Cerc… omni  Prim… lc                  10         0.7      NA      14  
+##  9 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA      13.7
+## 10 Afric… Cric… omni  Rode… &lt;NA&gt;                 8.3       2        NA      15.7
+## # ℹ 42 more rows
+## # ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<p>#2.Usa mutate() para crear una nueva columna llamada
+percent_day_awake que muestre el porcentaje del día que cada especie
+permanece despierta. Usa select() con everything() al final para
+comprobar que tus cálculos son correctos.</p>
+<pre class="r"><code>msleep %&gt;% 
+  mutate(percent_day_awake=( awake/24)*100) %&gt;% 
+   select(name,awake,percent_day_awake)</code></pre>
+<pre><code>## # A tibble: 83 × 3
+##    name                       awake percent_day_awake
+##    &lt;chr&gt;                      &lt;dbl&gt;             &lt;dbl&gt;
+##  1 Cheetah                     11.9              49.6
+##  2 Owl monkey                   7                29.2
+##  3 Mountain beaver              9.6              40  
+##  4 Greater short-tailed shrew   9.1              37.9
+##  5 Cow                         20                83.3
+##  6 Three-toed sloth             9.6              40  
+##  7 Northern fur seal           15.3              63.8
+##  8 Vesper mouse                17                70.8
+##  9 Dog                         13.9              57.9
+## 10 Roe deer                    21                87.5
+## # ℹ 73 more rows</code></pre>
+<p>#3.Agrupa los datos por año y calcula el número de tormentas que
+ocurrieron cada año.</p>
+<pre class="r"><code>storms %&gt;% 
+  group_by(year) %&gt;% 
+  summarize(n())</code></pre>
+<pre><code>## # A tibble: 48 × 2
+##     year `n()`
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975   238
+##  2  1976   126
+##  3  1977    92
+##  4  1978   152
+##  5  1979   324
+##  6  1980   335
+##  7  1981   311
+##  8  1982   111
+##  9  1983    88
+## 10  1984   342
+## # ℹ 38 more rows</code></pre>
+<p>#4.Filtra el dataset para quedarte solo con tormentas que tengan
+velocidad de viento mayor a 50 nudos, y luego ordénalas de mayor a menor
+velocidad de viento.</p>
+<pre class="r"><code>storms %&gt;% 
+  filter(wind&gt;50) %&gt;% 
+  arrange(desc(wind))</code></pre>
+<pre><code>## # A tibble: 6,991 × 13
+##    name     year month   day  hour   lat  long status    category  wind pressure
+##    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Allen    1980     8     7    18  21.8 -86.4 hurricane        5   165      899
+##  2 Gilbert  1988     9    14     0  19.7 -83.8 hurricane        5   160      888
+##  3 Wilma    2005    10    19    12  17.3 -82.8 hurricane        5   160      882
+##  4 Dorian   2019     9     1    16  26.5 -77   hurricane        5   160      910
+##  5 Dorian   2019     9     1    18  26.5 -77.1 hurricane        5   160      910
+##  6 Allen    1980     8     5    12  15.9 -70.5 hurricane        5   155      932
+##  7 Allen    1980     8     7    12  21   -84.8 hurricane        5   155      910
+##  8 Allen    1980     8     8     0  22.2 -87.9 hurricane        5   155      920
+##  9 Allen    1980     8     9     6  25   -94.2 hurricane        5   155      909
+## 10 Gilbert  1988     9    14     6  19.9 -85.3 hurricane        5   155      889
+## # ℹ 6,981 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
+<p>#5.Determina cuál combinación de Sitio y Diámetro tiene el total de
+grahami más alto.</p>
+<pre class="r"><code>lizards %&gt;% 
+  group_by(Site,Diameter) %&gt;% 
+  summarise(new_var= sum(grahami)) %&gt;% 
+  arrange(desc(new_var))</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Site&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 4 × 3
+## # Groups:   Site [2]
+##   Site  Diameter new_var
+##   &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt;
+## 1 Shade D &lt;= 2       220
+## 2 Shade D &gt; 2        122
+## 3 Sun   D &lt;= 2        65
+## 4 Sun   D &gt; 2         24</code></pre>
 
 
 

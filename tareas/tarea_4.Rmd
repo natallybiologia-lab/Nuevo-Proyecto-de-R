@@ -1,0 +1,54 @@
+---
+title: "tarea  4"
+author: "Natally S. Vidal-Figueroa"
+date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
+output: html_document
+---
+```{r, echo=FALSE}
+knitr::include_graphics("C:/Users/Natally Vidal/OneDrive - University of Puerto Rico/datos de R/Nuevo-Proyecto-de-R/plot.png")
+```
+
+
+```{r resultados_analisis, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(dplyr)
+
+# Datos del análisis
+resultados <- data.frame(
+  Prueba = c("Shapiro-Wilk (Normalidad)", 
+             "Levene (Homogeneidad de varianza)"),
+  Estadístico = c("W = 0.9872", 
+                  "F = 0.6946"),
+  `p-valor` = c("0.7826", 
+                "0.5592"),
+  Interpretación = c("Distribución normal de los residuos", 
+                     "Varianzas homogéneas entre grupos")
+)
+
+# Mostrar tabla
+kable(resultados, 
+      caption = "Resumen de resultados estadísticos del análisis de supuestos del modelo ANOVA",
+      align = "c")
+
+```
+
+```{r,tukey_tabla, echo=FALSE, message=FALSE, warning=FALSE}
+tukey <- data.frame(
+  Comparación = c("Bridgestone - Apollo", "CEAT - Apollo", "Falken - Apollo",
+                  "CEAT - Bridgestone", "Falken - Bridgestone", "Falken - CEAT"),
+  Diferencia = c(-3.0190, -0.0379, 2.8255, 2.9811, 5.8445, 2.8635),
+  `IC Inferior` = c(-5.1288, -2.1477, 0.7157, 0.8713, 3.7347, 0.7536),
+  `IC Superior` = c(-0.9092, 2.0719, 4.9354, 5.0909, 7.9544, 4.9733),
+  `p-valor ajustado` = c(0.0021, 0.9999, 0.0043, 0.0024, 0.0000, 0.0037)
+)
+
+kable(tukey, 
+      caption = "Resultados de la prueba Tukey HSD para comparación de marcas de llantas",
+      digits = 4,
+      align = "c")
+
+```
+
+**Descripción:**
+
+El análisis del rendimiento de las llantas según el kilometraje recorrido se realizó en R, utilizando los paquetes ggplot2, dplyr y car. Se realizó un analisis de varianza entre las marcas de los carros mediante un ANOVA (aov()). La visualización exploratoria se efectuó con ggplot2, empleando diagramas de caja (geom_boxplot()) para representar la distribución del kilometraje por marca. La normalidad de los residuos se comprobó con la prueba de Shapiro–Wilk (W = 0.9872; p = 0.7826), y la homogeneidad de varianzas con la prueba de Levene (F = 0.6946; p = 0.5592), confirmando el cumplimiento de los supuestos del modelo. Posteriormente, se aplicó la prueba Tukey HSD, cuyos resultados revelaron diferencias estadísticamente significativas entre varias marcas de llantas. En particular, se observaron diferencias notables entre Bridgestone y Apollo (p = 0.0021), Falken y Apollo (p = 0.0043), CEAT y Bridgestone (p = 0.0024), Falken y Bridgestone (p < 0.001), y Falken y CEAT (p = 0.0037). Estos resultados sugieren que las marcas Falken y Bridgestone presentan los mayores contrastes en rendimiento de kilometraje, mientras que CEAT y Apollo mostraron comportamientos más similares entre sí. En conjunto, el análisis confirma que el rendimiento en millas difiere significativamente entre algunas marcas, lo que podría atribuirse a variaciones en los materiales, diseño del neumático o tecnología de fabricación.

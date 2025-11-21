@@ -49,7 +49,7 @@ p <- ggplot(tyre,
 
 
 # ANOVA -------------------------------------------------------------------
-
+   
   
 mod <- aov(Mileage~Brands, data=tyre)
 summary(mod)

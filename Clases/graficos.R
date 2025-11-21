@@ -126,15 +126,19 @@ shapiro.test(resid)
 ---------------------------
 #normalización logaritmica REVISAR, NO DA
 
-ggplot((tvshows,aes(x=log(GRP),y=log(PE))))
-geom_point()+
-  geom_smooth(method=lm)
+  ggplot(data = tvshows) +
+  geom_point(mapping = aes(x = GRP, y=PE)) 
 
+ggplot(data = tvshows) +
+  geom_point(mapping = aes(x = GRP, y=PE,
+                           color=Genre)) 
 
-mod <- lm(log(PE)~log(GRP),data=tvshows))
-resid <- resid(mod)
-shapiro.test(resid)
+ggplot(tvshows) + 
+  geom_point(aes(x=GRP, y=PE, shape=Genre))
 
+ggplot(tvshows) + 
+  geom_point(aes(x=GRP, y=PE, 
+                 shape=Genre, color=Genre))
 
 
 

@@ -1,0 +1,7 @@
+install.packages("dplyr")
+library(dplyr)
+install.packages("ggpubr")
+install.packages("ggpmisc")
+installed.packages("ggbeeswarm")
+install.packages("broom")
+install.packages("ggstatsplot")

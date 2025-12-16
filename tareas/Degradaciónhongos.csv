@@ -1,0 +1,11 @@
+isolate_id,taxon,substrate,exposure_days,weight_loss_pct,radial_growth_mm_day,isolation_origin,colony_morphology
+H01,Aspergillus sp.,CongoRojo,14,13.2,2.1,Hojas,Algodonosa
+P04,Cladosporium sp.,CongoRojo,21,10.9,1.8,Plástico,Compacta
+S07,Curvularia sp.,AceiteUsado,30,22.3,2.9,Sedimento,Aterciopelada
+P08,Cladosporium sp.,AceiteUsado,30,16.9,2.2,Plástico,Compacta
+P09,Aspergillus sp.,LDPE,30,7.1,1.6,Plástico,Algodonosa
+T010,Penicillium sp.,LDPE,30,5.9,1.4,Madera,Compacta
+S11,Curvularia sp.,LDPE,21,6.8,1.5,Sedimento,Aterciopelada
+P13,Aspergillus sp.,HDPE,30,3.6,1.1,Plástico,Algodonosa
+T05,Penicillium sp.,HDPE,30,2.9,1,Madera,Compacta
+S09,Curvularia sp.,HDPE,21,3.2,1.1,Sedimento,Aterciopelada

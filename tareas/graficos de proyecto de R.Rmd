@@ -1,0 +1,23 @@
+---
+title: "gráficos de proyecto de R"
+author: "Natally S. Vidal-Figueroa"
+date: "2025-12-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+
+```
+
+```{r}
+hongos <- read_csv("tareas/Degradaciónhongos.csv")
+head(hongos)
+```
+
+```{r}
+#estructura
+glimpse(hongos) 
+summary(hongos)
+```
+

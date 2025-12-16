@@ -7,11 +7,14 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(dplyr)
+library(knitr)
+library(kableExtra)
 
 ```
 
 ```{r}
-hongos <- read_csv("tareas/Degradaciónhongos.csv")
+hongos <- read.csv("Degradaciónhongos.csv")
 head(hongos)
 ```
 
@@ -19,5 +22,108 @@ head(hongos)
 #estructura
 glimpse(hongos) 
 summary(hongos)
+```
+
+```{r}
+hongos <- hongos %>%
+  mutate(
+    isolate_id = factor(isolate_id),
+    substrate = factor(substrate),
+    isolation_origin = factor(isolation_origin),
+    colony_morphology = factor(colony_morphology),
+    taxon = factor(taxon)
+  )
+```
+
+```{r}
+tabla_sustrato <- hongos %>%
+  group_by(substrate) %>%
+  summarise(n = n(),
+    mean_weight_loss = mean(weight_loss_pct),
+    sd_weight_loss = sd(weight_loss_pct),
+    median_weight_loss = median(weight_loss_pct),
+    mean_growth = mean(radial_growth_mm_day),
+    sd_growth = sd(radial_growth_mm_day)
+  )
+
+tabla_sustrato
+
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+
+tabla_sustrato <- hongos %>%
+  group_by(substrate) %>%
+  summarise(
+    n = n(),
+    mean_weight_loss = mean(weight_loss_pct, na.rm = TRUE),
+    sd_weight_loss   = sd(weight_loss_pct, na.rm = TRUE),
+    median_weight_loss = median(weight_loss_pct, na.rm = TRUE),
+    IQR_weight_loss  = IQR(weight_loss_pct, na.rm = TRUE),
+    mean_growth = mean(radial_growth_mm_day, na.rm = TRUE),
+    sd_growth   = sd(radial_growth_mm_day, na.rm = TRUE)
+  ) %>%
+  arrange(substrate)
+
+tabla_sustrato %>%
+  kable(
+    caption = "Tabla 1. Estadísticas descriptivas por tipo de sustrato.",
+    digits = 2,
+    booktabs = TRUE
+  ) %>%
+  kable_styling(full_width = FALSE)
+
+
+
+```
+
+```{r}
+ggplot(hongos, aes(x = radial_growth_mm_day, y = weight_loss_pct)) +
+  geom_point(aes(shape = substrate), size = 3, alpha = 0.85,
+             position = position_jitter(width = 0.03, height = 0.15)) +
+  geom_smooth(aes(linetype = substrate), method = "lm", se = TRUE, linewidth = 0.9) +
+  labs(
+    x = "Crecimiento radial del micelio (mm/día)",
+    y = "Pérdida de peso del sustrato (%)",
+    shape = "Sustrato",
+    linetype = "Sustrato"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "right"
+  )
+
+```
+
+```{r}
+hongos <- hongos %>%
+  mutate(substrate = factor(substrate))
+
+# Modelo ANOVA (respuesta: pérdida de peso)
+anova_model <- aov(weight_loss_pct ~ substrate, data = hongos)
+
+shapiro.test(residuals(anova_model))
+
+car::leveneTest(weight_loss_pct ~ substrate, data = hongos)
+
+summary(anova_model)
+
+tukey_res <- TukeyHSD(anova_model)
+tukey_res
+
+
+plot(tukey_res)
+```
+
+```{r}
+cor_spearman <- cor.test(
+  hongos$radial_growth_mm_day,
+  hongos$weight_loss_pct,
+  method = "spearman"
+)
+cor_spearman
+
 ```
 

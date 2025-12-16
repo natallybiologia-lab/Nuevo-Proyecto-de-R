@@ -1,0 +1,15 @@
+---
+title: "Examen final"
+author: "Natally S. Vidal-Figueroa"
+date: "`r format(Sys.time(), '%Y-%b-%d, %I:%M %p')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+head(penguins)
+
+
+```
+
